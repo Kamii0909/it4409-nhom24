@@ -8,9 +8,11 @@ public enum CommonViewFeature implements ViewFeature {
     SEA_VIEW("Sea", false),
     CITY_VIEW("City", false),
     LAKE_VIEW("Lake", false),
+    RIVER_VIEW("River", false),
     SEA_VIEW_BALCONY("Sea", true),
     CITY_VIEW_BALCONY("City", true),
     LAKE_VIEW_BALCONY("Lake", true),
+    RIVER_VIEW_BALCONY("River", true),
     CITY_LAKE_VIEW("City and lake", false),
     CITY_SEA_VIEW("City and sea", false),
     SEA_EXTRA_CITY_VIEW_BALCONY("Sea", true, of("City"));

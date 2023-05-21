@@ -2,6 +2,9 @@ package edu.hust.it4409.booking.hotel;
 
 import java.util.List;
 
+import com.google.common.collect.ImmutableList;
+
+import edu.hust.it4409.booking.hotel.amenity.InternetAmenity;
 import edu.hust.it4409.booking.hotel.room.HotelRoom;
 import edu.hust.it4409.common.model.skeleton.AbstractAggregateRoot;
 import jakarta.persistence.Entity;
@@ -14,6 +17,8 @@ public class Hotel extends AbstractAggregateRoot {
     private String description;
     @OneToMany
     private List<HotelRoom> rooms;
+
+    private ImmutableList<String> foodAndDrinks;
     
     public String getName() {
         return name;

@@ -1,5 +1,7 @@
 package edu.hust.it4409.booking.hotel.room;
 
+import java.util.Optional;
+
 import edu.hust.it4409.booking.hotel.room.bed.BedFeature;
 import edu.hust.it4409.booking.hotel.room.food.FoodFeature;
 import edu.hust.it4409.booking.hotel.room.view.ViewFeature;
@@ -15,7 +17,6 @@ public class CommonRoomFeature implements RoomFeature {
     private final boolean hasAirConditioning;
     private final boolean hasTV;
     private final boolean hasHeating;
-    
     @Override
     public String getDescription() {
         return "Common room amenities found around hotels";
