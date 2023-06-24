@@ -1,11 +1,9 @@
-package edu.hust.it4409.booking.hotel.amenity;
+package edu.hust.it4409.booking.hotel.amenity.internet;
 
 import java.util.concurrent.TimeUnit;
 
 import com.google.common.base.Preconditions;
-import org.springframework.transaction.annotation.Transactional;
 
-@Transactional
 public interface InternetAmenity {
     public enum RestrictionPeriod {
         PER_STAY,

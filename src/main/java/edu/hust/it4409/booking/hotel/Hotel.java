@@ -1,46 +1,35 @@
 package edu.hust.it4409.booking.hotel;
 
+import java.util.Collections;
 import java.util.List;
 
-import com.google.common.collect.ImmutableList;
+import javax.money.MonetaryAmount;
 
-import edu.hust.it4409.booking.hotel.amenity.InternetAmenity;
+import org.hibernate.annotations.CompositeTypeRegistration;
+
 import edu.hust.it4409.booking.hotel.room.HotelRoom;
 import edu.hust.it4409.common.model.skeleton.AbstractAggregateRoot;
+import io.hypersistence.utils.hibernate.type.money.MonetaryAmountType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.*;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
+@CompositeTypeRegistration(userType = MonetaryAmountType.class, embeddableClass = MonetaryAmount.class)
+@Table(name = "hotel")
 public class Hotel extends AbstractAggregateRoot {
-    
+    @NonNull
     private String name;
+    @NonNull
     private String description;
-    @OneToMany
-    private List<HotelRoom> rooms;
-
-    private ImmutableList<String> foodAndDrinks;
-    
-    public String getName() {
-        return name;
-    }
-    
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    public String getDescription() {
-        return description;
-    }
-    
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
-    public List<HotelRoom> getRooms() {
-        return rooms;
-    }
-    
-    public void setRooms(List<HotelRoom> rooms) {
-        this.rooms = rooms;
-    }
+    @NonNull
+    private HotelAmenity hotelAmenity;
+    @OneToMany(mappedBy = "hotel")
+    private List<HotelRoom> rooms = Collections.emptyList();
 }

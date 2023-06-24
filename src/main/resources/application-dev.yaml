@@ -1,0 +1,6 @@
+spring:
+    liquibase:
+        defaultSchema: dev
+        liquibaseSchema: liquibase
+    jpa:
+        show-sql: true

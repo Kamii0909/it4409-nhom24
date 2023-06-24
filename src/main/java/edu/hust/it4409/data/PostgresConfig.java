@@ -33,5 +33,4 @@ class PostgresConfig {
         return config;
     }
     
-
 }

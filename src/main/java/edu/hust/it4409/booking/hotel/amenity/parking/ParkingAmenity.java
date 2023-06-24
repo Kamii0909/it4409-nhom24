@@ -1,4 +1,4 @@
-package edu.hust.it4409.booking.hotel.amenity;
+package edu.hust.it4409.booking.hotel.amenity.parking;
 
 public interface ParkingAmenity {
     default boolean hasParking() {

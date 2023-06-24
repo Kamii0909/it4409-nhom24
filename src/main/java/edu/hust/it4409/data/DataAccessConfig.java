@@ -11,6 +11,7 @@ import java.lang.annotation.Target;
 
 import javax.sql.DataSource;
 
+import org.hibernate.SessionFactory;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
@@ -20,6 +21,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnResource;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.*;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import com.zaxxer.hikari.HikariConfig;
@@ -27,6 +29,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 @ConditionalOnClass({ DataSource.class, HikariDataSource.class })
+@Import(JpaConfig.class)
 public class DataAccessConfig {
     
     /**
@@ -95,17 +98,16 @@ public class DataAccessConfig {
     }
     
     @Primary
+    @DataSourceTM
+    @Bean({ "tm", "transactionManager", "defaultTransactionManager" })
+    public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) {
+        return new HibernateTransactionManager(sessionFactory);
+    }
+    
+    @Primary
     @PooledDataSource
     @Bean({ "hikariDataSource", "dataSource", "defaultDataSource" })
     HikariDataSource hikariDataSource(HikariConfig hikariConfig) {
         return new HikariDataSource(hikariConfig);
     }
-    
-    @Primary
-    @DataSourceTM
-    @Bean({ "tm", "transactionManager", "defaultTransactionManager" })
-    PlatformTransactionManager transactionManager(HikariDataSource hikariDataSource) {
-        return new DataSourceTransactionManager(hikariDataSource);
-    }
-    
 }

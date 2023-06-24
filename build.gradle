@@ -21,6 +21,7 @@ repositories {
 ext {
     guava = '31.1-jre'
     javaMoneyRI = '1.4.2'
+    hypersistence = '3.5.0'
 }
 
 dependencies {
@@ -31,6 +32,7 @@ dependencies {
     runtimeOnly 'org.springframework.boot:spring-boot-starter-tomcat'
 
     implementation "org.javamoney:moneta:${javaMoneyRI}"
+    implementation "io.hypersistence:hypersistence-utils-hibernate-60:${hypersistence}"
 
     implementation "com.google.guava:guava:${guava}"
 

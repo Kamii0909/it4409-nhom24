@@ -3,17 +3,24 @@ package edu.hust.it4409.booking.hotel.room;
 import edu.hust.it4409.booking.hotel.Hotel;
 import edu.hust.it4409.common.model.skeleton.AbstractLocalEntity;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class HotelRoom extends AbstractLocalEntity<Hotel> {
-
-    private String description;
     
+    private RoomType roomType;
+    private RoomTier roomTier;
+    private String description;
     private CommonRoomFeature commonRoomFeature;
-
-    @OneToMany(mappedBy = "rooms", fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Hotel hotel;
     
     @Override

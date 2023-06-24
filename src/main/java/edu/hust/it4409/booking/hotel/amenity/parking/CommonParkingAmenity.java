@@ -1,4 +1,9 @@
-package edu.hust.it4409.booking.hotel.amenity;
+package edu.hust.it4409.booking.hotel.amenity.parking;
+
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public enum CommonParkingAmenity implements ParkingAmenity {
     HAS_ALL(true, true, true, true),
@@ -39,6 +44,21 @@ public enum CommonParkingAmenity implements ParkingAmenity {
     @Override
     public boolean hasOnSiteParking() {
         return hasOnSiteParking;
+    }
+    
+    private static final Map<String, CommonParkingAmenity> ENUM_MAP;
+    
+    static {
+        ENUM_MAP = Stream.of(CommonParkingAmenity.values())
+            .collect(Collectors.toMap(CommonParkingAmenity::toJson, Function.identity()));
+    }
+    
+    public String toJson() {
+        return "\"" + name() + "\"";
+    }
+    
+    public static CommonParkingAmenity fromJson(String value) {
+        return ENUM_MAP.get(value);
     }
     
 }
