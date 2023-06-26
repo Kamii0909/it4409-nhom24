@@ -20,7 +20,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnResource;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.*;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -56,7 +55,7 @@ public class DataAccessConfig {
     
     /**
      * Qualifier meta annotation to require the injection of
-     * {@link DataSourceTransactionManager} bean (as opposed to
+     * {@link PlatformTransactionManager} bean (as opposed to
      * {@link org.springframework.transaction.jta.JtaTransactionManager
      * XA-compatible TransactionManager})
      */

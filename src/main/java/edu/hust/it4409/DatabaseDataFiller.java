@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Profile;
 
 import edu.hust.it4409.booking.hotel.HotelRepository;
 
-@Profile("dev")
+@Profile({"dev & fakeData"})
 @Configuration
 public class DatabaseDataFiller {
     

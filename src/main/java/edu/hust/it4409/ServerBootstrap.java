@@ -12,6 +12,7 @@ import edu.hust.it4409.web.WebConfig;
 public class ServerBootstrap {
     
     public static void main(String[] args) {
+        System.setProperty("spring.backgroundpreinitializer.ignore", "true");
         // @formatter:off
         new SpringApplicationBuilder(ServerBootstrap.class)
                 .profiles("dev", "pg")
@@ -23,4 +24,5 @@ public class ServerBootstrap {
         // @formatter:on
     }
     
+
 }

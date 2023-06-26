@@ -22,6 +22,7 @@ ext {
     guava = '31.1-jre'
     javaMoneyRI = '1.4.2'
     hypersistence = '3.5.0'
+    jackson = '2.15.2'
 }
 
 dependencies {
@@ -32,11 +33,12 @@ dependencies {
     runtimeOnly 'org.springframework.boot:spring-boot-starter-tomcat'
 
     implementation "org.javamoney:moneta:${javaMoneyRI}"
+    implementation 'org.zalando:jackson-datatype-money:1.3.0'
+
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-hibernate6:${jackson}"
     implementation "io.hypersistence:hypersistence-utils-hibernate-60:${hypersistence}"
 
     implementation "com.google.guava:guava:${guava}"
-
-	implementation 'org.liquibase:liquibase-core'
 
 	compileOnly 'org.projectlombok:lombok'
 

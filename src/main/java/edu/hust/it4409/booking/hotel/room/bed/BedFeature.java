@@ -1,9 +1,12 @@
 package edu.hust.it4409.booking.hotel.room.bed;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.common.collect.ImmutableList;
 
 import edu.hust.it4409.booking.hotel.room.RoomFeature;
 
+@JsonDeserialize(as = CommonBedFeature.class)
 public interface BedFeature extends RoomFeature {
     /**
      * Amount of core (unchanged) bed in a room.
@@ -31,6 +34,7 @@ public interface BedFeature extends RoomFeature {
     ImmutableList<BedUnit> allowedExtraBeds();
     
     @Override
+    @JsonIgnore
     default String getDescription() {
         return "Number of beds, bed sizes, number of preferred adults";
     }

@@ -1,6 +1,6 @@
-package edu.hust.it4409.booking.hotel.room.amenity.view;
+package edu.hust.it4409.booking.hotel.room;
 
-public enum RoomViewAmenity {
+public enum RoomView {
     NO_SPEACIAL_VIEW,
     BAY_VIEW,
     BEACH_VIEW,

@@ -1,6 +1,5 @@
 database: pg
 
 spring:
-
     jpa:
         show-sql: true

@@ -5,7 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-
+import lombok.experimental.SuperBuilder;
+@SuperBuilder
 @MappedSuperclass
 public abstract class AbstractLocalEntity<T extends AbstractAggregateRoot> implements LocalEntity<Long, T> {
     

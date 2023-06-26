@@ -1,16 +1,16 @@
 package edu.hust.it4409.booking.hotel.amenity.pool;
 
-import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Embeddable
+@SuperBuilder
 public class UncommonPoolAmenity {
     public static final UncommonPoolAmenity NO_EXTRA_AMENITY = new UncommonPoolAmenity(
         false, false, false, false,
