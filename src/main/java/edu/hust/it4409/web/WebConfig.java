@@ -13,28 +13,32 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import edu.hust.it4409.booking.HotelMetadataService;
-import edu.hust.it4409.booking.hotel.HotelRepository;
+import edu.hust.it4409.booking.service.HotelMetadataService;
+import edu.hust.it4409.common.jackson.WebObjectMapper;
 import edu.hust.it4409.web.booking.BookingController;
+import edu.hust.it4409.web.security.SecurityConfiguration;
 
 @ImportAutoConfiguration({
-    ServletWebServerFactoryAutoConfiguration.class,
-    DispatcherServletAutoConfiguration.class
-})
-@Import(DelegatingWebMvcConfiguration.class)
+        ServletWebServerFactoryAutoConfiguration.class,
+        DispatcherServletAutoConfiguration.class })
+@Import({
+        DelegatingWebMvcConfiguration.class,
+        SecurityConfiguration.class })
 @Configuration
 public class WebConfig {
     @Bean
-    BookingController bookingController(HotelRepository hotelRepository, HotelMetadataService hotelMetadataService) {
-        return new BookingController(hotelRepository, hotelMetadataService);
+    BookingController bookingController(HotelMetadataService hotelMetadataService) {
+        return new BookingController(hotelMetadataService);
     }
-    
+
     // TODO : Hax ALERT
-    @Bean
-    CommandLineRunner jsonHack(RequestMappingHandlerAdapter adapter, ObjectMapper mapper) {
+    @Bean("$$jsonHackCommandLineRunner")
+    CommandLineRunner jsonHack(
+            RequestMappingHandlerAdapter adapter,
+            @WebObjectMapper ObjectMapper mapper) {
         return args -> adapter.getMessageConverters().stream()
-            .filter(messageConverter -> messageConverter instanceof MappingJackson2HttpMessageConverter mjhmc)
-            .forEach(ms -> ((MappingJackson2HttpMessageConverter) ms).setObjectMapper(mapper));
-        
+                .filter(messageConverter -> messageConverter instanceof MappingJackson2HttpMessageConverter mjhmc)
+                .forEach(ms -> ((MappingJackson2HttpMessageConverter) ms).setObjectMapper(mapper));
+
     }
 }

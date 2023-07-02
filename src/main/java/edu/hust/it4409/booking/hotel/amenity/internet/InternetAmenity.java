@@ -2,9 +2,15 @@ package edu.hust.it4409.booking.hotel.amenity.internet;
 
 import java.util.concurrent.TimeUnit;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.google.common.base.Preconditions;
 
-public interface InternetAmenity {
+import edu.hust.it4409.booking.hotel.amenity.IndexableAmenity;
+import edu.hust.it4409.booking.hotel.amenity.RecognizableAmenity;
+import edu.hust.it4409.booking.hotel.amenity.SurchargeableAmenity;
+import edu.hust.it4409.common.jackson.JacksonViews;
+
+public interface InternetAmenity extends IndexableAmenity, SurchargeableAmenity, RecognizableAmenity {
     public enum RestrictionPeriod {
         PER_STAY,
         PER_DAY;
@@ -28,25 +34,31 @@ public interface InternetAmenity {
         }
     }
     
-    public record WifiConnection(boolean isProvided, boolean isFree) {
+    public record WifiConnection(boolean isProvided, boolean isFree) implements IndexableAmenity, SurchargeableAmenity {
     }
     
+    @JsonView(JacksonViews.Full.class)
     WifiConnection wifiInGuestRooms();
     
+    @JsonView(JacksonViews.Full.class)
     WifiConnection wifiInPublicAreas();
     
+    @JsonView(JacksonViews.Full.class)
     default boolean ethernetInGuestRooms() {
         return false;
     }
     
+    @JsonView(JacksonViews.Full.class)
     default boolean ethernetInPublicAreas() {
         return false;
     }
     
+    @JsonView(JacksonViews.Full.class)
     default boolean dialupInGuestRooms() {
         return false;
     }
     
+    @JsonView(JacksonViews.Full.class)
     default boolean dialupInPublicAreas() {
         return false;
     }

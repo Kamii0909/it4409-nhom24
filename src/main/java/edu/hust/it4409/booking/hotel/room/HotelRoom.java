@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import edu.hust.it4409.booking.hotel.Hotel;
-import edu.hust.it4409.booking.hotel.room.bed.BedFeature;
+import edu.hust.it4409.booking.hotel.room.amenity.bed.BedAmenity;
 import edu.hust.it4409.common.model.skeleton.AbstractLocalEntity;
 import io.hypersistence.utils.hibernate.type.money.MonetaryAmountType;
 import jakarta.persistence.*;
@@ -43,7 +43,7 @@ public class HotelRoom extends AbstractLocalEntity<Hotel> {
     @Transient
     private double reviewRanking;
     @JdbcTypeCode(SqlTypes.JSON)
-    private BedFeature bed;
+    private BedAmenity bed;
     private String size;
     private MonetaryAmount costPerNight;
     @ManyToOne(optional = false)

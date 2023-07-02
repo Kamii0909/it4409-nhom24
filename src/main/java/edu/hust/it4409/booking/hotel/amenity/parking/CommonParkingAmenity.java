@@ -5,16 +5,32 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import edu.hust.it4409.common.util.EnumNameUtils;
+
 public enum CommonParkingAmenity implements ParkingAmenity {
-    HAS_ALL(true, true, true, true),
-    SELF_PARK_LONG_TERM(true, false, true, true),
-    VALET_PARK_SHORT_TERM(false, true, false, false),
-    HAS_NO_PARKING(false, false, false, false);
+    FLEXIBLE_PARKING_OPTIONS(true, true, true, true),
+    LONG_TERM_ONSITE_AVAILABLE_SELF_PARKING(true, false, true, true),
+    VALET_PARKING(false, true, false, false),
+    NO_PARKING_AVAILABLE(false, false, false, false);
+    
+    private static final Map<String, CommonParkingAmenity> COMMON_NAME_MAP;
+    
+    static {
+        COMMON_NAME_MAP = Stream.of(CommonParkingAmenity.values())
+            .collect(Collectors.toMap(
+                CommonParkingAmenity::recognizableName,
+                Function.identity()));
+    }
+    
+    public static CommonParkingAmenity fromRecognizableName(String value) {
+        return COMMON_NAME_MAP.get(value);
+    }
     
     private final boolean hasSelfParking;
     private final boolean hasValetParking;
     private final boolean hasLongTermParking;
     private final boolean hasOnSiteParking;
+    private final String formattedName;
     
     private CommonParkingAmenity(boolean hasSelfParking,
         boolean hasValetParking,
@@ -24,6 +40,7 @@ public enum CommonParkingAmenity implements ParkingAmenity {
         this.hasValetParking = hasValetParking;
         this.hasLongTermParking = hasLongTermParking;
         this.hasOnSiteParking = hasOnSiteParking;
+        this.formattedName = EnumNameUtils.formatName(name());
     }
     
     @Override
@@ -46,19 +63,14 @@ public enum CommonParkingAmenity implements ParkingAmenity {
         return hasOnSiteParking;
     }
     
-    private static final Map<String, CommonParkingAmenity> ENUM_MAP;
-    
-    static {
-        ENUM_MAP = Stream.of(CommonParkingAmenity.values())
-            .collect(Collectors.toMap(CommonParkingAmenity::toJson, Function.identity()));
+    @Override
+    public String recognizableName() {
+        return formattedName;
     }
     
-    public String toJson() {
-        return "\"" + name() + "\"";
-    }
-    
-    public static CommonParkingAmenity fromJson(String value) {
-        return ENUM_MAP.get(value);
+    @Override
+    public boolean isProvided() {
+        return hasSelfParking || hasValetParking;
     }
     
 }

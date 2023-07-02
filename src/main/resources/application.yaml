@@ -1,5 +1,5 @@
 database: pg
 
 spring:
-    jpa:
-        show-sql: true
+    main:
+        allow-bean-definition-overriding: false

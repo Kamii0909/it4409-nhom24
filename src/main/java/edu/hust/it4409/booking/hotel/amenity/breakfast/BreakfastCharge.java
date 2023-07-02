@@ -6,7 +6,7 @@ import javax.money.MonetaryAmount;
 
 import org.javamoney.moneta.FastMoney;
 
-import edu.hust.it4409.booking.hotel.Surcharged;
+import edu.hust.it4409.booking.hotel.amenity.Surcharged;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

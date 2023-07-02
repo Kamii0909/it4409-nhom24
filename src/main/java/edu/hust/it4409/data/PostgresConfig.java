@@ -9,8 +9,8 @@ import org.springframework.context.annotation.PropertySource;
 
 import com.zaxxer.hikari.HikariConfig;
 
-import edu.hust.it4409.data.DataAccessConfig.Config;
-import edu.hust.it4409.data.DataAccessConfig.RawDataSource;
+import edu.hust.it4409.data.DataAccessConfiguration.Config;
+import edu.hust.it4409.data.DataAccessConfiguration.RawDataSource;
 
 @Configuration
 @PropertySource("classpath:./db/pg/pg.properties")

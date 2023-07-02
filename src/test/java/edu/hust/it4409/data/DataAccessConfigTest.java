@@ -10,13 +10,12 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-@Import(DataAccessConfig.class)
+@Import(DataAccessConfiguration.class)
 @ActiveProfiles(
 {
     "test", "pg"
 })
-
-public class DataAccessConfigTest {
+class DataAccessConfigTest {
     
     @Autowired
     ApplicationContext context;

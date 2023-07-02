@@ -2,6 +2,7 @@ package edu.hust.it4409.booking.hotel.amenity.pool;
 
 import java.util.List;
 
+import edu.hust.it4409.booking.hotel.amenity.IndexableAmenity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,11 +14,16 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @SuperBuilder
-public class PoolAmenity {
+public class PoolAmenity implements IndexableAmenity {
     private int outdoorPool;
     private int indoorPool;
     private List<SeasonalPool> seasonalPools;
     private PoolHour poolHour;
     private NearybyPool nearybyPool;
     private UncommonPoolAmenity others;
+    
+    @Override
+    public boolean isProvided() {
+        return indoorPool > 0 || !seasonalPools.isEmpty() || outdoorPool > 0;
+    }
 }

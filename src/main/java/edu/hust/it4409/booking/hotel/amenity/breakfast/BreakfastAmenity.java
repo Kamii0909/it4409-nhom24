@@ -2,7 +2,7 @@ package edu.hust.it4409.booking.hotel.amenity.breakfast;
 
 import java.util.List;
 
-import edu.hust.it4409.common.model.interfaces.ValueObject;
+import edu.hust.it4409.booking.hotel.amenity.IndexableAmenity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +18,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BreakfastAmenity implements ValueObject {
+public class BreakfastAmenity implements IndexableAmenity {
     private List<BreakfastAvailability> availability;
     
     public boolean isProvided() {

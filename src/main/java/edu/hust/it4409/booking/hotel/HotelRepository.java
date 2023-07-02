@@ -4,14 +4,13 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
 import io.hypersistence.utils.spring.repository.BaseJpaRepository;
 
-@Repository
-public interface HotelRepository extends BaseJpaRepository<Hotel, Long> {
+public interface HotelRepository extends BaseJpaRepository<Hotel, Long>, JpaSpecificationExecutor<Hotel> {
     @Query(nativeQuery = true, value = """
         SELECT * FROM hotel
             """)
