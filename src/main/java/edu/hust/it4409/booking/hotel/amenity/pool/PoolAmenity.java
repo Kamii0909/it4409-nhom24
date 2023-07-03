@@ -19,7 +19,7 @@ public class PoolAmenity implements IndexableAmenity {
     private int indoorPool;
     private List<SeasonalPool> seasonalPools;
     private PoolHour poolHour;
-    private NearybyPool nearybyPool;
+    private NearbyPool nearbyPool;
     private UncommonPoolAmenity others;
     
     @Override

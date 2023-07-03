@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Embeddable
-public class NearybyPool {
+public class NearbyPool {
     private boolean hasNearbyIndoorPool;
     private boolean hasNearbyOutdoorPool;
 }

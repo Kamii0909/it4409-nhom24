@@ -38,7 +38,8 @@ public class Hotel extends AbstractAggregateRoot {
     private String location;
     private HotelAmenity hotelAmenity;
     @OneToMany(
-        mappedBy = "hotel",
+        mappedBy = "hotel", 
+        fetch = FetchType.EAGER,
         cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
     @JsonManagedReference
     private List<HotelRoom> rooms;

@@ -11,6 +11,7 @@ import edu.hust.it4409.booking.hotel.HotelSummaryView;
 import edu.hust.it4409.booking.service.HotelMetadataService;
 import lombok.RequiredArgsConstructor;
 
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 @RequiredArgsConstructor
 @RestController("/api")
 public class BookingController {
@@ -33,7 +34,7 @@ public class BookingController {
         @RequestParam(name = "maxPrice", required = false) Integer maxPrice,
         @RequestParam(name = "star", required = false) List<Integer> stars,
         @RequestParam(name = "amenity", required = false) List<String> amenities) {
-        List<AmenityKey> parsedAmenity = amenities.stream()
+        List<AmenityKey> parsedAmenity = amenities == null ? null : amenities.stream()
             .map(AmenityKey::get)
             .filter(x -> x == null)
             .toList();
